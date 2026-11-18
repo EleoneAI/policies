@@ -2,35 +2,311 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Account Deletion - Aspirants | ELEONEIO™ SYSTEMS</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Account Deletion & Data Erasure | Aspirants - ELEONEIO™ SYSTEMS</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet">
   <style>
-    body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; line-height: 1.6; max-width: 800px; margin: 40px auto; padding: 0 20px; color: #1e293b; background: #f8fafc; }
-    .card { background: #fff; padding: 32px; border-radius: 12px; border: 1px solid #e2e8f0; }
-    h1 { color: #991b1b; margin-top: 0; }
-    .step-box { background: #f1f5f9; padding: 16px 20px; border-radius: 8px; margin: 16px 0; border-left: 4px solid #0f172a; }
+    :root {
+      --primary: #0F172A;
+      --accent-red: #DC2626;
+      --accent-red-bg: #FEF2F2;
+      --accent-red-border: #FCA5A5;
+      --accent-blue: #2563EB;
+      --accent-emerald: #059669;
+      --text-main: #0F172A;
+      --text-muted: #475569;
+      --text-light: #64748B;
+      --bg-surface: #FFFFFF;
+      --bg-page: #F8FAFC;
+      --bg-subtle: #F1F5F9;
+      --border-color: #E2E8F0;
+      --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      background-color: var(--bg-page);
+      color: var(--text-main);
+      line-height: 1.65;
+      -webkit-font-smoothing: antialiased;
+    }
+    .top-bar {
+      background: var(--primary);
+      color: #fff;
+      padding: 14px 24px;
+      font-size: 13px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    }
+    .top-bar-inner {
+      max-width: 960px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+    .brand-mark {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-weight: 800;
+      font-size: 14px;
+      letter-spacing: 0.8px;
+    }
+    .brand-pill {
+      background: rgba(255, 255, 255, 0.15);
+      padding: 2px 8px;
+      border-radius: 4px;
+      font-size: 11px;
+      font-weight: 700;
+    }
+    .top-links a { color: #CBD5E1; text-decoration: none; font-weight: 600; font-size: 12px; }
+    .top-links a:hover { color: #fff; }
+    .container { max-width: 960px; margin: 40px auto 80px auto; padding: 0 24px; }
+    .hero-card {
+      background: var(--bg-surface);
+      border: 1px solid var(--border-color);
+      border-radius: 16px;
+      padding: 36px 40px;
+      box-shadow: var(--shadow-sm);
+      margin-bottom: 28px;
+      position: relative;
+      overflow: hidden;
+    }
+    .hero-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0; height: 4px;
+      background: linear-gradient(90deg, var(--accent-red) 0%, #F59E0B 100%);
+    }
+    .badge-danger {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: var(--accent-red-bg);
+      color: var(--accent-red);
+      border: 1px solid var(--accent-red-border);
+      padding: 4px 12px;
+      border-radius: 9999px;
+      font-size: 12px;
+      font-weight: 700;
+      margin-bottom: 14px;
+    }
+    h1 { font-size: 30px; font-weight: 800; letter-spacing: -0.8px; color: var(--primary); margin-bottom: 10px; }
+    .subtitle { font-size: 15px; color: var(--text-muted); line-height: 1.6; }
+    .methods-grid { display: grid; grid-template-columns: 1fr; gap: 24px; margin-bottom: 32px; }
+    .method-card { background: var(--bg-surface); border: 1px solid var(--border-color); border-radius: 16px; padding: 32px; box-shadow: var(--shadow-sm); }
+    .method-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 20px;
+      padding-bottom: 16px;
+      border-bottom: 1px solid var(--border-color);
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+    .method-title { font-size: 18px; font-weight: 800; color: var(--primary); }
+    .pill-recommended {
+      background: #ECFDF5;
+      color: var(--accent-emerald);
+      border: 1px solid #A7F3D0;
+      padding: 3px 10px;
+      border-radius: 999px;
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+    }
+    .pill-alt {
+      background: var(--bg-subtle);
+      color: var(--text-muted);
+      border: 1px solid var(--border-color);
+      padding: 3px 10px;
+      border-radius: 999px;
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+    }
+    .step-item { display: flex; gap: 16px; margin-bottom: 18px; align-items: flex-start; }
+    .step-num {
+      width: 32px;
+      height: 32px;
+      background: var(--primary);
+      color: #fff;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 800;
+      font-size: 13px;
+      flex-shrink: 0;
+    }
+    .step-text h4 { font-size: 14px; font-weight: 700; color: var(--primary); margin-bottom: 4px; }
+    .step-text p { font-size: 13px; color: var(--text-muted); }
+    .email-template-box {
+      background: var(--bg-subtle);
+      border: 1px solid var(--border-color);
+      border-radius: 10px;
+      padding: 20px;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 12px;
+      color: var(--text-main);
+      margin-top: 14px;
+    }
+    .email-template-box strong { color: var(--accent-blue); }
+    .breakdown-card { background: var(--bg-surface); border: 1px solid var(--border-color); border-radius: 16px; padding: 32px; box-shadow: var(--shadow-sm); }
+    .breakdown-card h3 { font-size: 18px; font-weight: 800; color: var(--primary); margin-bottom: 16px; }
+    table { width: 100%; border-collapse: collapse; font-size: 13px; text-align: left; }
+    th { background: var(--bg-subtle); color: var(--primary); font-weight: 700; padding: 12px 16px; border-bottom: 1px solid var(--border-color); }
+    td { padding: 12px 16px; border-bottom: 1px solid var(--border-color); color: var(--text-muted); }
+    tr:last-child td { border-bottom: none; }
+    .badge-deleted { background: var(--accent-red-bg); color: var(--accent-red); padding: 2px 8px; border-radius: 4px; font-weight: 700; font-size: 11px; }
+    .badge-anonymized { background: #FEF3C7; color: #92400E; padding: 2px 8px; border-radius: 4px; font-weight: 700; font-size: 11px; }
+    footer { margin-top: 48px; text-align: center; color: var(--text-light); font-size: 13px; }
+    @media (max-width: 640px) {
+      .hero-card, .method-card, .breakdown-card { padding: 20px; }
+      h1 { font-size: 22px; }
+    }
   </style>
 </head>
 <body>
-  <div class="card">
-    <h1>Account Deletion & Data Erasure</h1>
-    <p>In compliance with Google Play Store User Data policies, users of <strong>Aspirants</strong> (by ELEONEIO™ SYSTEMS) can delete their account and associated data through either of the methods below:</p>
 
-    <h3>Method 1: Instant In-App Deletion (Recommended)</h3>
-    <div class="step-box">
-      <ol>
-        <li>Open the <strong>Aspirants</strong> app on your device.</li>
-        <li>Open the navigation drawer and tap <strong>Profile Settings</strong>.</li>
-        <li>Scroll down to the <strong>DANGER ZONE</strong> card and tap <strong>Delete Account</strong>.</li>
-        <li>Review the warning and confirm the final approval dialog.</li>
-      </ol>
-      <p><em>Your active study records, syllabus topics, progress logs, and profile are immediately and permanently erased from the active database.</em></p>
+  <div class="top-bar">
+    <div class="top-bar-inner">
+      <div class="brand-mark">
+        <span>ELEONEIO™ SYSTEMS</span>
+        <span class="brand-pill">DATA SOVEREIGNTY PORTAL</span>
+      </div>
+      <div class="top-links">
+        <a href="Aspirants-privacy.html">&larr; Return to Privacy Policy</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="container">
+    <div class="hero-card">
+      <span class="badge-danger">RIGHT TO ERASURE</span>
+      <h1>Account Deletion & Data Purge</h1>
+      <p class="subtitle">
+        In compliance with Google Play Developer User Data Policies and global privacy regulations (including India DPDP 2023 & EU GDPR), you have absolute ownership over your account. You can permanently wipe your profile and study records at any time.
+      </p>
     </div>
 
-    <h3>Method 2: Email Request</h3>
-    <div class="step-box">
-      <p>Send an email from your registered address to <a href="mailto:support@eleone.io">support@eleone.io</a> with the subject line <code>"Delete My Account"</code>. Your request will be fulfilled within 48 business hours.</p>
+    <div class="methods-grid">
+      <div class="method-card">
+        <div class="method-header">
+          <div class="method-title">Method 1: Instant In-App Erasure</div>
+          <span class="pill-recommended">Instant & Automatic</span>
+        </div>
+
+        <div class="step-item">
+          <div class="step-num">1</div>
+          <div class="step-text">
+            <h4>Open Aspirants on your Device</h4>
+            <p>Ensure you are signed into the account you wish to delete.</p>
+          </div>
+        </div>
+
+        <div class="step-item">
+          <div class="step-num">2</div>
+          <div class="step-text">
+            <h4>Navigate to Profile Settings</h4>
+            <p>Tap the menu icon (top left) &rarr; Select <strong>Profile Settings</strong>.</p>
+          </div>
+        </div>
+
+        <div class="step-item">
+          <div class="step-num">3</div>
+          <div class="step-text">
+            <h4>Access the Danger Zone</h4>
+            <p>Scroll to the bottom of the screen to find the red <strong>DANGER ZONE</strong> card &rarr; Tap <strong>Delete Account</strong>.</p>
+          </div>
+        </div>
+
+        <div class="step-item">
+          <div class="step-num">4</div>
+          <div class="step-text">
+            <h4>Double-Check Confirmation</h4>
+            <p>Read the warning summary, select an optional reason, and tap <strong>"Yes, Permanently Delete My Account"</strong>.</p>
+          </div>
+        </div>
+
+        <div class="step-item">
+          <div class="step-num">✓</div>
+          <div class="step-text">
+            <h4>Immediate Purge Completed</h4>
+            <p>All active study tables, topics, progress logs, and your profile are immediately destroyed from the active cloud database. You will be signed out instantly.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="method-card">
+        <div class="method-header">
+          <div class="method-title">Method 2: Email Data Erasure Request</div>
+          <span class="pill-alt">Web Request • 48h Turnaround</span>
+        </div>
+        <p style="color: var(--text-muted); font-size: 14px; margin-bottom: 12px;">
+          If you no longer have access to the app or device, you can trigger a manual deletion request by emailing our privacy team:
+        </p>
+
+        <div class="email-template-box">
+          <strong>To:</strong> support@eleone.io<br>
+          <strong>Subject:</strong> Account Deletion Request - Aspirants<br><br>
+          Dear ELEONEIO Privacy Team,<br><br>
+          Please permanently delete my Aspirants user account and all associated study data.<br>
+          Registered Email: [Your account email here]<br>
+          Registered Full Name: [Your name here]
+        </div>
+      </div>
     </div>
+
+    <div class="breakdown-card">
+      <h3>Data Deletion & Retention Breakdown</h3>
+      <table>
+        <thead>
+          <tr>
+            <th>Data Point</th>
+            <th>Status Upon Account Deletion</th>
+            <th>Retention Period</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Full Name & Email</strong></td>
+            <td><span class="badge-deleted">Erased from active database</span></td>
+            <td>Immediate hard-delete from active tables</td>
+          </tr>
+          <tr>
+            <td><strong>Syllabus Progress & Completed Topics</strong></td>
+            <td><span class="badge-deleted">Permanently Destroyed</span></td>
+            <td>Immediate hard-delete (0 days)</td>
+          </tr>
+          <tr>
+            <td><strong>Study Logs, Hours & Confidence Scores</strong></td>
+            <td><span class="badge-deleted">Permanently Destroyed</span></td>
+            <td>Immediate hard-delete (0 days)</td>
+          </tr>
+          <tr>
+            <td><strong>Exam Reminders & Custom Milestones</strong></td>
+            <td><span class="badge-deleted">Permanently Destroyed</span></td>
+            <td>Immediate hard-delete (0 days)</td>
+          </tr>
+          <tr>
+            <td><strong>Sanitized Audit Record</strong></td>
+            <td><span class="badge-anonymized">Archived without study notes</span></td>
+            <td>Retained for legal tax, fraud-mitigation & operational reporting audits only</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <footer>
+      &copy; 2026 ELEONEIO™ SYSTEMS • Aspirants Trust & Safety Center<br>
+      Inquiries: <a href="mailto:support@eleone.io">support@eleone.io</a>
+    </footer>
   </div>
 </body>
 </html>
